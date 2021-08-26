@@ -13,3 +13,13 @@ class AuthData:
         login = fake.email()
         password = fake.password()
         return AuthData(login, password)
+
+
+class EditProfileData:
+    def __init__(self, username="mem"):
+        self.username = username
+
+    # @staticmethod
+    # def random():
+    #     username = "memiii"
+    #     return EditProfileData(username)
