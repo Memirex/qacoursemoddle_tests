@@ -11,7 +11,6 @@ from pages.application import Application
 def app(request):
     base_url = request.config.getoption("--base-url")
     fixture = Application(webdriver.Chrome(ChromeDriverManager().install()), base_url)
-    fixture.driver.implicitly_wait(10)
     yield fixture
     fixture.quit()
 
@@ -20,7 +19,7 @@ def pytest_addoption(parser):
     parser.addoption(
         "--base-url",
         action="store",
-        default="https://qacoursemoodle.innopolis.university/",
+        default="https://qacoursemoodle.innopolis.university",
         help="enter base_url",
     ),
     parser.addoption(
@@ -31,4 +30,4 @@ def pytest_addoption(parser):
     ),
     parser.addoption(
         "--password", action="store", default="Qwerty123#", help="enter password",
-    ),
+    )

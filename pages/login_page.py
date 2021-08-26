@@ -1,16 +1,40 @@
-from locators.login import LoginPageLocators
+from locators.login_page_locators import LoginPageLocators
+from models.auth import AuthData
+from pages.base_page import BasePage
+
+from selenium.webdriver.remote.webelement import WebElement
 
 
-class LoginPage:
-    def __init__(self, app):
-        self.app = app
+class LoginPage(BasePage):
+    def is_auth(self):
+        self.find_element(LoginPageLocators.FORM)
+        element = self.find_elements(LoginPageLocators.USER_BUTTON)
+        if len(element) > 0:
+            return True
+        return False
 
-    def auth(self, login: str, password: str):
-        sign_in = self.app.driver.find_element(*LoginPageLocators.SIGN_IN)
-        sign_in.click()
-        email_input = self.app.driver.find_element(*LoginPageLocators.USERNAME)
-        email_input.send_keys(login)
-        password_input = self.app.driver.find_element(*LoginPageLocators.PASSWORD)
-        password_input.send_keys(password)
-        submit_button = self.app.driver.find_element(*LoginPageLocators.LOGIN_SUBMIT)
-        submit_button.click()
+    def email_input(self) -> WebElement:
+        return self.find_element(LoginPageLocators.USERNAME)
+
+    def password_input(self) -> WebElement:
+        return self.find_element(LoginPageLocators.PASSWORD)
+
+    def submit_button(self) -> WebElement:
+        return self.find_element(LoginPageLocators.LOGIN_SUBMIT)
+
+    def user_menu(self) -> WebElement:
+        return self.find_element(LoginPageLocators.USER_MENU)
+
+    def exit(self) -> WebElement:
+        return self.find_element(LoginPageLocators.EXIT)
+
+    def auth(self, data: AuthData):
+        if self.is_auth():
+            self.click_element(self.user_menu())
+            self.click_element(self.exit())
+        self.fill_element(self.email_input(), data.login)
+        self.fill_element(self.password_input(), data.password)
+        self.click_element(self.submit_button())
+
+    def is_not_auth(self) -> str:
+        return self.find_element(LoginPageLocators.LOGIN_ERROR).text
