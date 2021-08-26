@@ -48,6 +48,8 @@ class TestAuth:
         data = AuthData(login="mem", password="Qwerty123#")
         app.login.auth(data)
         ep_data = EditProfileData()
-        app.login.edit_username(ep_data)
-        assert ProfileConstants.CORRECT_MESSAGE == app.login.save_change()
+        app.profile.edit_username(ep_data)
+        assert ProfileConstants.CORRECT_MESSAGE == app.profile.save_change()
+
+
 

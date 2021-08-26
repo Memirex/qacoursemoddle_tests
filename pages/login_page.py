@@ -1,11 +1,12 @@
-from locators.login_page_locators import LoginPageLocators, EditProfileLocators
-from models.auth import AuthData, EditProfileData
+from locators.login_page_locators import LoginPageLocators
+from models.auth import AuthData
 from pages.base_page import BasePage
 
 from selenium.webdriver.remote.webelement import WebElement
 
 
 class LoginPage(BasePage):
+
     def is_auth(self):
         self.find_element(LoginPageLocators.FORM)
         element = self.find_elements(LoginPageLocators.USER_BUTTON)
@@ -38,23 +39,4 @@ class LoginPage(BasePage):
 
     def is_not_auth(self) -> str:
         return self.find_element(LoginPageLocators.LOGIN_ERROR).text
-
-    def open_toolbar(self):
-        return self.click_element(self.find_element(LoginPageLocators.LOGIN_TOOLBAR))
-
-    def open_options(self):
-        self.open_toolbar()
-        self.click_element(self.find_element(LoginPageLocators.LOGIN_OPTIONS))
-
-    def edit_profile(self):
-        self.open_options()
-        self.click_element(self.find_element(LoginPageLocators.OPTIONS_EDIT_PROFILE))
-
-    def edit_username(self, data: EditProfileData):
-        self.edit_profile()
-        self.fill_element(self.find_element(EditProfileLocators.EDIT_USERNAME), data.username)
-        self.click_element(self.find_element(EditProfileLocators.SUBMIT_BUTTON))
-
-    def save_change(self) -> str:
-        return self.find_element(EditProfileLocators.SAVE_CHANGE).text
 

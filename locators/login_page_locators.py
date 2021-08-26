@@ -15,8 +15,3 @@ class LoginPageLocators:
     OPTIONS_EDIT_PROFILE = (By.CSS_SELECTOR, ".card-text div a:nth-child(1)")
 
 
-class EditProfileLocators:
-    SUBMIT_BUTTON = (By.ID, "id_submitbutton")
-    EDIT_USERNAME = (By.ID, "id_username")
-    SAVE_CHANGE = (By.CLASS_NAME, "alert")
-
