@@ -1,6 +1,6 @@
 from faker import Faker
 
-fake = Faker("Ru-ru")
+fake_ru = Faker("Ru-ru")
 
 
 class AuthData:
@@ -10,16 +10,6 @@ class AuthData:
 
     @staticmethod
     def random():
-        login = fake.email()
-        password = fake.password()
+        login = fake_ru.email()
+        password = fake_ru.password()
         return AuthData(login, password)
-
-
-class EditProfileData:
-    def __init__(self, username="mem"):
-        self.username = username
-
-    # @staticmethod
-    # def random():
-    #     username = "memiii"
-    #     return EditProfileData(username)

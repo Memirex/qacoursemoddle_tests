@@ -1,18 +1,36 @@
 import pytest
 
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 from webdriver_manager.chrome import ChromeDriverManager
 
+from models.auth import AuthData
 from pages.application import Application
 
 
 @pytest.fixture(scope="session")
 def app(request):
     base_url = request.config.getoption("--base-url")
-    fixture = Application(webdriver.Chrome(ChromeDriverManager().install()), base_url)
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    fixture = Application(
+        webdriver.Chrome(
+            ChromeDriverManager().install(), chrome_options=chrome_options
+        ),
+        base_url,
+    )
     yield fixture
     fixture.quit()
+
+
+@pytest.fixture
+def auth(app, request):
+    user = request.config.getoption("--username")
+    password = request.config.getoption("--password")
+    app.open_auth_page()
+    data = AuthData(login=user, password=password)
+    app.login.auth(data)
 
 
 def pytest_addoption(parser):
@@ -23,11 +41,8 @@ def pytest_addoption(parser):
         help="enter base_url",
     ),
     parser.addoption(
-        "--username",
-        action="store",
-        default="mem",
-        help="enter username",
+        "--username", action="store", default="mem", help="enter username"
     ),
     parser.addoption(
-        "--password", action="store", default="Qwerty123#", help="enter password",
+        "--password", action="store", default="Qwerty123#", help="enter password"
     )
