@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 class EditProfileLocators:
     SUBMIT_BUTTON = (By.ID, "id_submitbutton")
     USERNAME = (By.ID, "id_username")
-    SAVE_CHANGE = (By.CLASS_NAME, "alert")
+    SAVE_CHANGE = (By.CSS_SELECTOR, "#user-notifications div")
     FIRSTNAME = (By.ID, "id_firstname")
     LASTNAME = (By.ID, "id_lastname")
     EMAIL = (By.ID, "id_email")
@@ -26,3 +26,5 @@ class EditProfileLocators:
     PHONE = (By.ID, "id_phone1")
     MOBILE_PHONE = (By.ID, "id_phone2")
     ADDRESS = (By.ID, "id_address")
+    OPEN_IMAGE = (By.CSS_SELECTOR, "#id_moodle_picture .fheader")
+    DOWNLOAD_IMAGE = (By.ID, "id_imagefile")

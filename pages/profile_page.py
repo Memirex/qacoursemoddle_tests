@@ -91,6 +91,10 @@ class ProfilePage(BasePage):
     def update_profile_button(self):
         return self.find_element(EditProfileLocators.SUBMIT_BUTTON)
 
+    def open_image(self):
+        button = self.find_element(EditProfileLocators.OPEN_IMAGE)
+        self.click_element(button)
+
     def edit_required_fields(self, data: EditRequiredData):
         self.edit_profile()
         self.fill_element(self.firstname(), data.firstname)

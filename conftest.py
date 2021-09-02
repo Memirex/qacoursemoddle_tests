@@ -1,3 +1,5 @@
+import logging
+
 import pytest
 
 from selenium import webdriver
@@ -9,17 +11,26 @@ from models.auth import AuthData
 from pages.application import Application
 
 
+logger = logging.getLogger("moodle")
+
+
 @pytest.fixture(scope="session")
 def app(request):
     base_url = request.config.getoption("--base-url")
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    fixture = Application(
-        webdriver.Chrome(
-            ChromeDriverManager().install(), chrome_options=chrome_options
-        ),
-        base_url,
-    )
+    headless_type = request.config.getoption("--headless").lower()
+    logger.info(f"Start moodle {base_url} with headless = {headless_type}")
+    if headless_type:
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        fixture = Application(
+            webdriver.Chrome(
+                ChromeDriverManager().install(), options=chrome_options
+            ),
+            base_url,
+        )
+    else:
+        fixture = Application(webdriver.Chrome(ChromeDriverManager().install()),
+                              base_url)
     yield fixture
     fixture.quit()
 
@@ -45,4 +56,9 @@ def pytest_addoption(parser):
     ),
     parser.addoption(
         "--password", action="store", default="Qwerty123#", help="enter password"
+    )
+    parser.addoption(
+        "--headless", action="store", default="true",
+        help="Input 'true' if you are running test a headless type,"
+             " 'false' if you not"
     )
