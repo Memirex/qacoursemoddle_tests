@@ -27,3 +27,5 @@ class CoursePageLocators:
     BUTTON_DELETE = (By.CLASS_NAME, "action-delete")
     COURSE_DELETE = (By.XPATH, "//button[text()='Удалить']")
     SURE_DELETE = (By.CSS_SELECTOR, "h2")
+    FULLNAME_ERROR = (By.ID, "id_error_fullname")
+    SHORTNAME_ERROR = (By.ID, "id_error_shortname")

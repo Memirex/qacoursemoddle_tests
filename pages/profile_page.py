@@ -1,6 +1,7 @@
 import logging
 import time
 
+from common.constants import ProfileConstants
 from locators.login_page_locators import LoginPageLocators
 from locators.profile_page_locators import EditProfileLocators
 from models.profile import EditRequiredData, EditOptionalData, EditEmailTimeCountry
@@ -202,3 +203,22 @@ class ProfilePage(BasePage):
 
     def save_change(self) -> str:
         return self.find_element(EditProfileLocators.SAVE_CHANGE).text
+
+    def all_required_fields_filled(self):
+        empty_first_name_field_error = self.find_element(
+            EditProfileLocators.EMPTY_FIRSTNAME_ERROR
+        ).text
+        empty_last_name_field_error = self.find_element(
+            EditProfileLocators.EMPTY_LASTNAME_ERROR
+        ).text
+        empty_email_field_error = self.find_element(
+            EditProfileLocators.EMPTY_EMAIL_ERROR
+        ).text
+
+        if (
+            ProfileConstants.EMPTY_NAME_FIELD_MESSAGE in empty_first_name_field_error
+            or ProfileConstants.EMPTY_NAME_FIELD_MESSAGE in empty_last_name_field_error
+            or ProfileConstants.EMPTY_EMAIL_FIELD_MESSAGE in empty_email_field_error
+        ):
+            return False
+        return True

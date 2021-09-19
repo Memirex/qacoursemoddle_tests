@@ -33,5 +33,6 @@ class EditProfileLocators:
     DOWNLOAD_FILE_SECTION = (By.XPATH, "//span[text()='Загрузить файл']")
     USER_IMAGE_FILE_CHOOSE_INPUT = (By.CSS_SELECTOR, "input[type='file']")
     DOWNLOAD_FILE_BUTTON = (By.CLASS_NAME, "fp-upload-btn")
-
-    DDD = (By.CSS_SELECTOR, ".action-delete .fa-trash:nth-child(1)")
+    EMPTY_FIRSTNAME_ERROR = (By.ID, "id_error_firstname")
+    EMPTY_LASTNAME_ERROR = (By.ID, "id_error_lastname")
+    EMPTY_EMAIL_ERROR = (By.ID, "id_error_email")

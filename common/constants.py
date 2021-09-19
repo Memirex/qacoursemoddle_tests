@@ -17,6 +17,9 @@ class ProfileConstants:
         "Pacific/Honolulu",
         "UTC"
     ]
+    EMPTY_NAME_FIELD_MESSAGE = "Заполните поле"
+    EMPTY_EMAIL_FIELD_MESSAGE = "Необходимо заполнить"
+    INVALID_EMAIL_MESSAGE = "Некорректный формат адреса электронной почты"
 
 
 class CreateCourseConstants:
@@ -33,3 +36,6 @@ class CreateCourseConstants:
         51200,
         10240,
     ]
+
+    EMPTY_FULLNAME_MESSAGE = "Заполните поле"
+    EMPTY_SHORTNAME_MESSAGE = "Не указано краткое название"

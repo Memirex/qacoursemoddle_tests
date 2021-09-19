@@ -38,7 +38,9 @@ class TestProfile:
         ep_data = EditRequiredData().random()
         setattr(ep_data, field, None)
         app.profile.edit_required_fields(ep_data)
-        assert ProfileConstants.CORRECT_MESSAGE == app.profile.save_change()
+        assert (
+            not app.profile.all_required_fields_filled()
+        ), "Empty fields are ignored and user data changed successfully!"
 
     @pytest.mark.parametrize(
         "field",

@@ -1,6 +1,8 @@
 import logging
 
 from selenium.webdriver.remote.webelement import WebElement
+
+from common.constants import CreateCourseConstants
 from pages.base_page import BasePage
 from locators.course_page_locators import CoursePageLocators
 
@@ -150,3 +152,18 @@ class CreateCoursePage(BasePage):
 
     def sure_delete(self):
         return self.find_element(CoursePageLocators.SURE_DELETE).text
+
+    def all_required_fields_filled(self):
+        empty_fullname_error = self.find_element(
+            CoursePageLocators.FULLNAME_ERROR
+        ).text
+        empty_shortname_error = self.find_element(
+            CoursePageLocators.SHORTNAME_ERROR
+        ).text
+
+        if (
+            CreateCourseConstants.EMPTY_FULLNAME_MESSAGE in empty_fullname_error
+            or CreateCourseConstants.EMPTY_SHORTNAME_MESSAGE in empty_shortname_error
+        ):
+            return False
+        return True
