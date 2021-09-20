@@ -24,7 +24,8 @@ class TestAuth:
         app.open_auth_page()
         data = AuthData.random()
         app.login.auth(data)
-        assert LoginConstants.ERROR_MESSAGE == app.login.is_not_auth(), "Input correct values"
+        assert LoginConstants.ERROR_MESSAGE == app.login.is_not_auth(),\
+            "Input correct values"
 
     @pytest.mark.parametrize("field", ["login", "password"])
     def test_auth_empty_data(self, app, field):
@@ -38,4 +39,5 @@ class TestAuth:
         data = AuthData.random()
         setattr(data, field, None)
         app.login.auth(data)
-        assert LoginConstants.ERROR_MESSAGE == app.login.is_not_auth(), "Input correct values"
+        assert LoginConstants.ERROR_MESSAGE == app.login.is_not_auth(),\
+            "Input correct values"

@@ -105,7 +105,7 @@ class ProfilePage(BasePage):
 
     def profile_button(self):
         return self.find_element(EditProfileLocators.SUBMIT_BUTTON)
-
+      
     def update_profile_button(self):
         self.click_element(self.profile_button())
 
