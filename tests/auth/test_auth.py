@@ -14,6 +14,7 @@ class TestAuth:
         """
         assert app.login.is_auth(), "We are not auth"
 
+    @pytest.mark.xfail
     def test_auth_invalid_data(self, auth, app):
         """
         Steps
