@@ -19,12 +19,13 @@ class TestAuth:
         Steps
         1. Open main page
         2. Auth with invalid data
-        3. Check auth result
+        3. Check auth error
         """
         app.open_auth_page()
         data = AuthData.random()
         app.login.auth(data)
-        assert LoginConstants.ERROR_MESSAGE == app.login.is_not_auth(), "Input correct values"
+        assert LoginConstants.ERROR_MESSAGE == app.login.is_not_auth(), \
+            "Input correct values"
 
     @pytest.mark.parametrize("field", ["login", "password"])
     def test_auth_empty_data(self, app, field):
@@ -32,10 +33,11 @@ class TestAuth:
         Steps
         1. Open auth page
         2. Auth with empty data
-        3. Check auth result
+        3. Check auth error
         """
         app.open_auth_page()
         data = AuthData.random()
         setattr(data, field, None)
         app.login.auth(data)
-        assert LoginConstants.ERROR_MESSAGE == app.login.is_not_auth(), "Input correct values"
+        assert LoginConstants.ERROR_MESSAGE == app.login.is_not_auth(), \
+            "Input correct values"

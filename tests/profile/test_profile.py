@@ -33,7 +33,7 @@ class TestProfile:
         3. Check auth result
         4. Go to page with editing personal data
         5. Edit required fields with invalid data
-        6. Check successfully editing
+        6. Check error editing
         """
         ep_data = EditRequiredData().random()
         setattr(ep_data, field, None)
