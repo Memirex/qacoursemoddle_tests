@@ -1,4 +1,8 @@
+import random
+
 from faker import Faker
+
+from common.constants import ProfileConstants
 
 fake_ru = Faker("Ru-ru")
 
@@ -57,20 +61,20 @@ class EditOptionalData:
     @staticmethod
     def random():
         username = "mem"
-        moodle_net_profile = fake_ru.name()
-        city = fake_ru.name()
-        description = fake_ru.name()
-        picture_description = fake_ru.name()
-        firstname_pho = fake_ru.name()
-        surname_pho = fake_ru.name()
+        moodle_net_profile = fake_ru.url()
+        city = fake_ru.city()
+        description = fake_ru.text(max_nb_chars=200)
+        picture_description = fake_ru.text(max_nb_chars=100)
+        firstname_pho = fake_ru.first_name()
+        surname_pho = fake_ru.last_name()
         middle_name = fake_ru.name()
         alternate_name = fake_ru.name()
         tags = fake_ru.name()
-        id_number = fake_ru.name()
+        id_number = fake_ru.random_number()
         institution = fake_ru.name()
         departament = fake_ru.name()
-        phone = fake_ru.name()
-        mobile_phone = fake_ru.name()
+        phone = fake_ru.random_number()
+        mobile_phone = fake_ru.random_number()
         address = fake_ru.name()
         return EditOptionalData(
             username,
@@ -90,3 +94,24 @@ class EditOptionalData:
             mobile_phone,
             address,
         )
+
+
+class EditEmailTimeCountry:
+    def __init__(
+        self,
+        email_display=None,
+        country_code=None,
+        timezone=None
+    ):
+        self.email_display = email_display
+        self.country_code = country_code
+        self.timezone = timezone
+
+    @staticmethod
+    def random():
+        email_display = random.choice(
+            list(ProfileConstants.EMAIL_DISPLAY_CHOICE.values())
+        )
+        country_code = fake_ru.country_code()
+        timezone = random.choice(ProfileConstants.TIMEZONE_CHOICE)
+        return EditEmailTimeCountry(email_display, country_code, timezone)
