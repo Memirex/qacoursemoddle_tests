@@ -40,5 +40,6 @@ class TestAuth:
         data = AuthData.random()
         setattr(data, field, None)
         app.login.auth(data)
+
         assert LoginConstants.ERROR_MESSAGE == app.login.is_not_auth(), \
             "Input correct values"
