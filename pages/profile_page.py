@@ -105,7 +105,7 @@ class ProfilePage(BasePage):
 
     def profile_button(self):
         return self.find_element(EditProfileLocators.SUBMIT_BUTTON)
-      
+
     def update_profile_button(self):
         self.click_element(self.profile_button())
 
@@ -145,21 +145,21 @@ class ProfilePage(BasePage):
     def edit_optional_fields(self, data: EditOptionalData):
         logger.info(
             f"Editing basic personal data with next values:\n"
-            f"name: {data.moodle_net_profile}\n"
-            f"lastname: {data.city}\n"
-            f"email: {data.description}\n"
-            f"moodle_net_profile: {data.picture_description}\n"
-            f"city: {data.firstname_pho}\n"
-            f"country_code: {data.surname_pho}\n"
-            f"timezone: {data.middle_name}\n"
-            f"about: {data.alternate_name}\n"
-            f"lastname: {data.tags}\n"
-            f"email: {data.id_number}\n"
-            f"moodle_net_profile: {data.institution}\n"
-            f"city: {data.departament}\n"
-            f"country_code: {data.phone}\n"
-            f"timezone: {data.mobile_phone}\n"
-            f"about: {data.address}\n"
+            f"moodle_net_profile: {data.moodle_net_profile}\n"
+            f"city: {data.city}\n"
+            f"description: {data.description}\n"
+            f"picture_description: {data.picture_description}\n"
+            f"firstname_pho: {data.firstname_pho}\n"
+            f"surname_pho: {data.surname_pho}\n"
+            f"middle_name: {data.middle_name}\n"
+            f"alternate_name: {data.alternate_name}\n"
+            f"tags: {data.tags}\n"
+            f"id_number: {data.id_number}\n"
+            f"institution: {data.institution}\n"
+            f"departament: {data.departament}\n"
+            f"phone: {data.phone}\n"
+            f"mobile_phone: {data.mobile_phone}\n"
+            f"address: {data.address}\n"
         )
         self.edit_profile()
         self.fill_element(self.moodle_net_profile(), data.moodle_net_profile)
@@ -182,9 +182,9 @@ class ProfilePage(BasePage):
     def edit_email_country_time(self, data: EditEmailTimeCountry):
         logger.info(
             f"Editing basic personal data with next values:\n"
-            f"name: {data.email_display}\n"
-            f"lastname: {data.country_code}\n"
-            f"email: {data.timezone}\n"
+            f"email_display: {data.email_display}\n"
+            f"country_code: {data.country_code}\n"
+            f"timezone: {data.timezone}\n"
         )
         self.edit_profile()
         self.select_value(self.email_display(), data.email_display)

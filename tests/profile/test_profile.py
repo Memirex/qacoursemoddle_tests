@@ -24,7 +24,6 @@ class TestProfile:
         app.profile.edit_required_fields(ep_data)
         assert ProfileConstants.CORRECT_MESSAGE == app.profile.save_change()
 
-    @pytest.mark.xfail
     @pytest.mark.parametrize("field", ["firstname", "lastname", "email"])
     def test_invalid_change_required_fields(self, app, field, auth):
         """
