@@ -1,4 +1,4 @@
-[![Build Status](https://app.travis-ci.com/Memirex/qacoursemoddle_tests.svg?branch=main)](https://app.travis-ci.com/github/Memirex/qacoursemoddle_tests/)
+[![Build Status](https://app.travis-ci.com/Memirex/qacoursemoddle_tests.svg?branch=testing_required_fields)](https://app.travis-ci.com/github/Memirex/qacoursemoddle_tests/)
 
 # Тесты для приложения "Курсы"
 ###Установка
