@@ -14,17 +14,18 @@ class TestAuth:
         """
         assert app.login.is_auth(), "We are not auth"
 
+    @pytest.mark.xfail
     def test_auth_invalid_data(self, auth, app):
         """
         Steps
         1. Open main page
         2. Auth with invalid data
-        3. Check auth result
+        3. Check auth error
         """
         app.open_auth_page()
         data = AuthData.random()
         app.login.auth(data)
-        assert LoginConstants.ERROR_MESSAGE == app.login.is_not_auth(),\
+        assert LoginConstants.ERROR_MESSAGE == app.login.is_not_auth(), \
             "Input correct values"
 
     @pytest.mark.parametrize("field", ["login", "password"])
@@ -33,11 +34,12 @@ class TestAuth:
         Steps
         1. Open auth page
         2. Auth with empty data
-        3. Check auth result
+        3. Check auth error
         """
         app.open_auth_page()
         data = AuthData.random()
         setattr(data, field, None)
         app.login.auth(data)
-        assert LoginConstants.ERROR_MESSAGE == app.login.is_not_auth(),\
+
+        assert LoginConstants.ERROR_MESSAGE == app.login.is_not_auth(), \
             "Input correct values"
